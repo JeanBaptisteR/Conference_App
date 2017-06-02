@@ -1,0 +1,25 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pages</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage('session')">
+        <ion-icon name="md-list"></ion-icon>
+        Sessions
+      </button>
+      <button ion-item (click)="openPage('presenter-list')">
+        <ion-icon name="md-contacts"></ion-icon>
+        Présentateurs
+      </button>
+      <button ion-item (click)="openPage('about')">
+        <ion-icon name="md-help-circle"></ion-icon>
+        A propos du téléphone
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

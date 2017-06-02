@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Mes notes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1 align="center">{{session.title}}</h1>
+  <div align="center">
+    <button ion-button icon-only (click)="takePicture()">
+      <ion-icon name="md-camera"></ion-icon>
+    </button>
+    <button ion-button icon-only (click)="addPicture()">
+      <ion-icon name="ios-image"></ion-icon>
+    </button>
+    <button ion-button icon-only (click)="captureAudio()">
+      <ion-icon name="ios-mic"></ion-icon>
+    </button>
+    <button ion-button icon-only (click)="captureVideo()">
+      <ion-icon name="ios-videocam"></ion-icon>
+    </button>
+  </div>
+  <ion-list *ngIf="session">
+    <ion-card>
+      <ion-item>
+        <ion-label>Notes</ion-label>
+        <ion-textarea rows="6" [(ngModel)]="notes"></ion-textarea>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+  <button ion-button full round icon-left (click)="saveNotes()">
+    Enregistrer les notes
+  </button>
+  <br>
+  <ion-list *ngIf="pictures.length > 0">
+    <h4 align="center">Photos</h4>
+    <div *ngFor="let picture of pictures">
+      <img [src]="picture" (click)="onImageTouch(picture)"/>
+    </div>
+  </ion-list>
+  <ion-list *ngIf="videos.length > 0">
+    <h4 align="center">Videos</h4>
+    <div *ngFor="let video of videos">
+      <button ion-item (click)="openWithDefaultPlayer(video)">
+        {{video.name}}
+        <ion-icon item-right name="md-arrow-dropright"></ion-icon>
+      </button>
+    </div>
+  </ion-list>
+  <ion-list *ngIf="audios.length > 0">
+    <h4 align="center">Audios</h4>
+    <div *ngFor="let audio of audios">
+      <button ion-item (click)="openWithDefaultPlayer(audio)">
+        {{audio.name}}
+        <ion-icon item-right name="md-arrow-dropright"></ion-icon>
+      </button>
+    </div>
+  </ion-list>
+</ion-content>

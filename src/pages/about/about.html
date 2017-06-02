@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Téléphone
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        <h4> Conference - Version 1.0 </h4>
+      </ion-card-title>
+      <p>
+        Cette application permet d'obtenir des informations à propos du DevFest 2016
+      </p>
+      <ion-row no-padding>
+        <ion-col text-center>
+          <button ion-button clear small color="primary" icon-left (click)="goToSocialLink()">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-33>Platform : </ion-col>
+          <ion-col width-33>{{device.platform}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-33>Version : </ion-col>
+          <ion-col width-33>{{device.version}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-33>UUID : </ion-col>
+          <ion-col width-66>{{device.uuid}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-33>Model : </ion-col>
+          <ion-col width-33>{{device.model}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-33>Connection : </ion-col>
+          <ion-col width-33>{{network.type}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-33>Nombre de pas effectué depuis le début de la journée: </ion-col>
+          <ion-col width-33>{{stepCount}}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

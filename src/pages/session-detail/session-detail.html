@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Session
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <h1 align="center">{{session.title}}</h1>
+
+  <ion-list no-lines>
+     <ion-item> <ion-icon name="calendar" item-left></ion-icon> {{session.sessionHours.hourStart}}:{{session.sessionHours.minStart}} - {{session.sessionHours.hourEnd}}:{{session.sessionHours.minEnd}}</ion-item>
+     <ion-item> <ion-icon name="pin" item-left></ion-icon>{{session.confRoom}}</ion-item>
+     <ion-item text-wrap> <ion-icon name="md-list" item-left> </ion-icon>{{session.desc}}</ion-item>
+  </ion-list>
+
+  <h4 *ngIf="speaker" align="center">Présentateurs</h4>
+  <ion-card *ngFor="let speaker of speakers" class="speaker-card">
+    <ion-card-header>
+      <button ion-item detail-none (click)="goToSpeakerDetail(speaker)">
+        <ion-avatar item-left>
+          <img [src]="speaker.urlImage" alt="Speaker profile pic">
+        </ion-avatar>
+        {{speaker.lastname}} {{speaker.firstname}}
+      </button>
+    </ion-card-header>
+    <ion-card-content class="outer-content">
+      <ion-list>
+        <h3>{{speaker.about}}</h3>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button full round icon-left (click)="clickOnNotes(session)">
+    <ion-icon name="ios-bookmarks"></ion-icon> Mes notes
+  </button>
+</ion-content>

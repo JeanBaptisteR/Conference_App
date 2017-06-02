@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Détails du présentateur
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src={{presenter.urlImage}}/>
+    <ion-card-content>
+      <ion-card-title>
+        <h1>{{presenter.lastname}} {{presenter.firstname}}</h1>
+        <h4><i> {{presenter.company}} </i></h4>
+      </ion-card-title>
+      <ion-item>
+        <ion-label>Ajouter à mes contacts</ion-label>
+        <ion-toggle [(ngModel)]="isContact" (ionChange)="changeContactEvent()"></ion-toggle>
+      </ion-item>
+      <p>
+        {{presenter.about}}
+      </p>
+      <ion-row no-padding>
+        <ion-col text-center>
+          <button ion-button clear small color="primary" *ngFor="let social of presenter.socials" icon-left (click)="goToSocialLink(social.link)">
+            <ion-icon name="logo-{{social.class}}"></ion-icon>
+            {{social.class}}
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+  <h5 align="center">Ses présentations</h5>
+  <ion-card *ngFor="let session of sessions" class="speaker-card">
+    <ion-card-header>
+      <button ion-item detail-none (click)="goToSessionDetail(session)">
+        {{session.title}}
+      </button>
+    </ion-card-header>
+    <ion-card-content class="outer-content">
+      <ion-list>
+        <h3>{{session.desc}}</h3>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

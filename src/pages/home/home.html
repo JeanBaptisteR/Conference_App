@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Conférence
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <img src="assets/data/mines-nantes.png">
+  <h1 align="center">Conférence</h1>
+  <h5 align="center">02/02/2017 - 05/02/2017</h5> <br>
+  <button ion-button full round icon-left (click)="openPage('presenter-list')">
+    <ion-icon name="md-contacts"></ion-icon> Liste des présentateurs
+  </button>
+  <button ion-button full round icon-left (click)="openPage('session')">
+    <ion-icon name="md-list"></ion-icon> Liste des sessions
+  </button>
+</ion-content>

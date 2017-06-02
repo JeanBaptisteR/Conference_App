@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateTab()">
+      <ion-segment-button value="all">
+        Toutes les sessions
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Parcours Personnalisé
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="segment==='all'">
+    <ion-list>
+      <ion-item-group *ngFor="let group of groups">
+        <ion-item-divider sticky>
+          <ion-label>
+            <b>{{group[0].sessionHours.hourStart}}:{{group[0].sessionHours.minStart}} - {{group[0].sessionHours.hourEnd}}:{{group[0].sessionHours.minEnd}}</b>
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-sliding *ngFor="let session of group" class="ion-item-sliding">
+            <button ion-item class="item-text-wrap" detail-none (click)="clickOnSession(session)" (touch)="addToFavorite(session)">
+              <h3 text-wrap>{{session.title}}</h3>
+              <p>
+                {{session.sessionHours.hourStart}}:{{session.sessionHours.minStart}} - {{session.sessionHours.hourEnd}}:{{session.sessionHours.minEnd}} / {{session.confRoom}}
+              </p>
+            </button>
+            <ion-item-options>
+              <button ion-button (click)="addToFavorite(session)">
+                <ion-icon name="md-add"></ion-icon>
+              </button>
+            </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+  </div>
+  <div *ngIf="segment==='favorites'">
+    <ion-list>
+      <ion-item-group>
+        <ion-item-divider sticky>
+        </ion-item-divider>
+        <ion-item-sliding *ngFor="let session of sessions" class="ion-item-sliding-perso">
+          <button ion-item class="item-text-wrap" detail-none (click)="clickOnSession(session)" (touch)="removeFavorite(session)">
+            <h3>{{session.title}}</h3>
+            <p>
+              {{session.sessionHours.hourStart}}:{{session.sessionHours.minStart}} - {{session.sessionHours.hourEnd}}:{{session.sessionHours.minEnd}} / {{session.confRoom}}
+            </p>
+          </button>
+          <ion-item-options>
+            <button ion-button color="danger" (click)="removeFavorite(session)">
+              <ion-icon name="md-trash"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+  </div>
+</ion-content>
